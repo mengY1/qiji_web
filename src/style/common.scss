@@ -1,0 +1,429 @@
+@charset "utf-8";
+@import "./mixin";
+body,
+div,
+header,
+footer,
+nav,
+section,
+aside,
+article,
+ul,
+dl,
+dt,
+dd,
+li,
+a,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+b,
+textarea,
+button,
+input,
+select,
+figure,
+figcaption,
+  {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  font-style: normal;
+  text-decoration: none;
+  border: none;
+  // color: #333;
+  font-weight: normal;
+  font-family: "Microsoft Yahei";
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-font-smoothing: antialiased;
+  &:hover {
+    outline: none;
+  }
+}
+
+button {
+  cursor: pointer;
+}
+
+input,
+select,
+button,
+textarea {
+  outline: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+//阿里巴巴图标
+@font-face {
+  font-family: 'iconfont';  /* project id 869983 */
+  src: url('//at.alicdn.com/t/font_869983_lsv6rvyishg.eot');
+  src: url('//at.alicdn.com/t/font_869983_lsv6rvyishg.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_869983_lsv6rvyishg.woff') format('woff'),
+  url('//at.alicdn.com/t/font_869983_lsv6rvyishg.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_869983_lsv6rvyishg.svg#iconfont') format('svg');
+}
+
+//弹出框
+.prompt {
+  position: fixed;
+  top: 25%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.7);
+  padding: 5px 15px;
+  border-radius: 5px;
+  z-index: 5000;
+  color: #FFF;
+  max-width: 85%;
+  text-align: center;
+  transition: all 0.6s;
+  font-size: 16px;
+}
+
+//确认框/询问框
+.alertMask {
+  position: fixed;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
+  background-color: rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 500;
+  .alertPopups {
+    width: 420px;
+    background-color: #fff;
+    border: 1px solid #ebeef5;
+    font-size: 18px;
+    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    animation: alertAnimation 0.4s;
+    .title {
+      padding: 15px;
+      display: flex;
+      justify-content: space-between;
+      p {
+        font-size: 18px;
+        color: #303133;
+      }
+      span {
+        width: 16px;
+        height: 16px;
+        cursor: pointer;
+        stroke: #909399;
+        fill: #909399;
+        &:hover {
+          stroke: #f00;
+          fill: #f00;
+        }
+      }
+    }
+    .alertContent {
+      padding: 10px 15px;
+      color: #606266;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      &.inputType {
+        display: block;
+        input {
+          background-color: #fff;
+          background-image: none;
+          border-radius: 4px;
+          border: 1px solid #dcdfe6;
+          box-sizing: border-box;
+          color: #606266;
+          display: inline-block;
+          font-size: inherit;
+          height: 40px;
+          line-height: 40px;
+          outline: none;
+          padding: 0 15px;
+          transition: border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+          width: 100%;
+          margin: 15px 0;
+          &:focus {
+            outline: none;
+            border-color: #409eff;
+          }
+        }
+      }
+      svg {
+        stroke: #e6a23c;
+        fill: #e6a23c;
+        width: 24px;
+        height: 24px;
+        flex-shrink: 0;
+        margin-right: 10px;
+      }
+      p {
+        color: #606266;
+        font-size: 14px;
+      }
+    }
+    .alertBut {
+      padding: 5px 15px 10px;
+      display: flex;
+      justify-content: flex-end;
+      button {
+        padding: 9px 15px;
+        font-size: 12px;
+        border-radius: 3px;
+        &:nth-child(1) {
+          background: #fff;
+          border: 1px solid #dcdfe6;
+          color: #606266;
+          &:hover {
+            color: #409eff;
+            border-color: #c6e2ff;
+            background-color: #ecf5ff;
+          }
+        }
+        &:last-child {
+          background: $mainColor;
+          border: 1px solid $mainColor;
+          color: #fff;
+          margin-left: 10px;
+          &:hover {
+            background: #2e8dee;
+            border-color: #2e8dee;
+            color: #fff;
+          }
+        }
+      }
+    }
+  }
+}
+
+@keyframes alertAnimation {
+  0% {
+    transform: translateY(-30px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+
+.icon {
+  font-family: 'iconfont';
+  font-size: 14px;
+  color: #666;
+  font-style: normal;
+  text-decoration: none;
+}
+
+input[type="button"],
+input[type="submit"],
+input[type="search"],
+input[type="reset"] {
+  -webkit-appearance: none;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+textarea {
+  -webkit-appearance: none;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  min-width: 1200px;
+  background-color: #fff;
+}
+
+.pageCenter {
+  width: 1200px;
+  min-width: 1200px;
+  padding: 0px 15px;
+  margin: 0px auto;
+}
+
+//面包屑
+.bread {
+  padding: 15px 0px;
+  font-size: 14px;
+  color: #666666;
+  span {
+    cursor: pointer;
+  }
+}
+
+.clear:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+.clear {
+  zoom: 1;
+}
+
+.back_img {
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.margin {
+  margin: 0 auto;
+}
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
+
+.hide {
+  display: none;
+}
+
+.show {
+  display: block;
+}
+
+.ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.paddingTop {
+  padding-top: 1.95rem;
+}
+
+@keyframes backOpacity {
+  0% {
+    opacity: 1
+  }
+  25% {
+    opacity: .5
+  }
+  50% {
+    opacity: 1
+  }
+  75% {
+    opacity: .5
+  }
+  100% {
+    opacity: 1
+  }
+}
+
+.animation_opactiy {
+  animation: backOpacity 2s ease-in-out infinite;
+}
+
+.ripple {
+  position: relative;
+  overflow: hidden;
+  outline: none;
+  cursor: pointer;
+}
+
+.rippleSpan {
+  display: block;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: 1;
+  box-shadow: inset 0 0 100px 5px rgba(255, 255, 255, 0.4); // , 0 0 20px 0px rgba(255, 255, 255, 0.8)
+  border-radius: 100%;
+}
+
+//多选
+.checkbox {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  &::before {
+    content: "";
+    flex-shrink: 0;
+    margin-right: 5px;
+    width: 14px;
+    height: 14px;
+    border: 1px solid #d4d8db;
+    border-radius: 3px;
+    font-family: 'iconfont';
+  }
+  &.current::before {
+    content: "\e629";
+    color: #0090e6;
+    border: 0;
+    font-size: 18px;
+    line-height: 14px;
+    width: 16px;
+  }
+}
+
+// 单选样式
+.radioBox {
+  display: flex;
+  div {
+    display: flex;
+    font-size: 14px;
+    color: #333333;
+    align-items: center;
+    height: 36px;
+    cursor: pointer;
+    i {
+      margin-right: 5px;
+      width: 15px;
+      height: 15px;
+      border: solid 1px #d9d9d9;
+      border-radius: 50%;
+    }
+    &.current {
+      i {
+        border: solid 5px #0090e6;
+      }
+    }
+  }
+}
+
+//暂无记录
+.noRecord {
+  width: 100%;
+  display: flex;
+  height: 500px;
+  align-items: center;
+  justify-content: center;
+  >div {
+    img {
+      width: 252px;
+      height: 220px;
+      display: block;
+      margin-left: 95px;
+    }
+    p {
+      text-align: center;
+      font-size: 26px;
+      color: #666;
+    }
+  }
+}
+
+
+
